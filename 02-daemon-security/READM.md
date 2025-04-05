@@ -54,3 +54,62 @@ Docker Desktop corre sobre una VM, por lo tanto no expone directamente `/etc/doc
 }
 
 Requiere reinicio de daemon y se crea entorno aislado para imágenes. Protege contra contenedores ejecutándose como root en el host.
+
+🔐 Acceso remoto seguro al daemon Docker
+📂 Carpeta: 02-daemon-security
+🎯 Objetivo: entender y, si se desea, habilitar acceso remoto al Docker daemon mediante SSH o TLS
+⏱ Estimado: 15 minutos
+
+## Acceso remoto seguro
+
+En entornos Linux reales se recomienda acceso vía SSH o TLS usando contextos Docker.
+
+### Simulación vía SSH con Docker context:
+
+```bash
+docker context create remote-host --docker "host=ssh://usuario@host"
+docker context use remote-host
+docker ps
+
+Si tienes acceso a un servidor Linux (o WSL con Ubuntu), puedes hacer lo siguiente:
+
+✅ Paso 1: Generar claves SSH
+bash
+Copiar
+Editar
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_docker_remote
+✅ Paso 2: Copiar clave pública al host remoto
+bash
+Copiar
+Editar
+ssh-copy-id -i ~/.ssh/id_docker_remote.pub usuario@host-remoto
+✅ Paso 3: Crear nuevo contexto Docker
+bash
+Copiar
+Editar
+docker context create remote-host \
+  --docker "host=ssh://usuario@host-remoto"
+Verifica que existe:
+
+bash
+Copiar
+Editar
+docker context ls
+✅ Paso 4: Usar el nuevo contexto
+bash
+Copiar
+Editar
+docker context use remote-host
+docker ps
+Esto ejecutará docker ps en el host remoto vía SSH. Super útil para administrar múltiples servidores Docker sin exponer puertos.
+
+## Acceso remoto seguro
+
+En entornos Linux reales se recomienda acceso vía SSH o TLS usando contextos Docker.
+
+### Simulación vía SSH con Docker context:
+
+```bash
+docker context create remote-host --docker "host=ssh://usuario@host"
+docker context use remote-host
+docker ps
