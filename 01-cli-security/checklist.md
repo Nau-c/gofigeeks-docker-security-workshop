@@ -26,3 +26,8 @@ Verifica con:
 ```bash
 docker system info | grep Username
 ```
+
+## Estado
+✅ Docker Desktop instalado
+✅ Autenticado con Docker Hub
+⚠️ Warning por seccomp documentado (ver sección 04)
