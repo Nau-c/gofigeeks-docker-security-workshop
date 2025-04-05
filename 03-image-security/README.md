@@ -62,3 +62,54 @@ docker scan descontinuado
 - Herramienta: `docker scan` (Snyk)
 - Vulnerabilidades detectadas: X (resumen del output)
 - Notas: Se recomienda minimizar capas y actualizar `FROM` con imágenes oficiales y actualizadas.
+
+🧼 Paso 4: Analizar Dockerfile con hadolint
+📂 Carpeta: 03-image-security/linting
+🎯 Objetivo: Validar buenas prácticas en tu Dockerfile y evitar errores comunes de seguridad/sintaxis.
+
+✅ 1. Instalar hadolint (opciones)
+Opción A: Usar contenedor hadolint directamente (recomendada en tu caso)
+```bash
+docker run --rm -i hadolint/hadolint < Dockerfile
+```
+Opción B: Instalar hadolint en tu sistema local
+```bash
+# En macOS
+brew install hadolint
+# En Linux (Debian/Ubuntu)
+sudo apt-get install hadolint
+# En Linux (CentOS/RHEL)
+sudo yum install hadolint
+``` 
+
+📄 Análisis línea a línea
+dockerfile
+Copiar
+Editar
+FROM python:3.11-slim
+✅ Usas una imagen oficial y slim → buena práctica.
+🔍 Extra tip: podrías especificar el hash (digest) para mayor seguridad en producción.
+
+dockerfile
+Copiar
+Editar
+WORKDIR /app
+✅ Establece el directorio de trabajo dentro del contenedor. hadolint te habría advertido si esto faltaba.
+
+dockerfile
+Copiar
+Editar
+COPY app.py .
+✅ Copia el archivo de tu proyecto al contenedor. Si tuvieras otros archivos, considera un .dockerignore para evitar copiar cosas innecesarias (como .git).
+
+dockerfile
+Copiar
+Editar
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
+✅ Patrón ideal: ENTRYPOINT como el binario fijo y CMD como argumentos.
+📌 Esto te da flexibilidad: puedes sobrescribir CMD fácilmente pero no ENTRYPOINT (a menos que lo forces con --entrypoint).
+
+✅ Resultado: ¡Dockerfile 10/10!
+No solo hadolint lo aprueba, también está bien pensado desde el punto de vista de seguridad, claridad y portabilidad.
+
