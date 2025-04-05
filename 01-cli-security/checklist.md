@@ -9,3 +9,20 @@ Instala el .dmg normalmente arrastrando a Aplicaciones.
 
 ✅ [x]Paso 2: Verificar instalación
 Corre los siguientes comandos:
+
+```bash
+docker --version
+docker compose version
+```
+cd ~/.docker
+cat config.
+
+✅ Paso 3: Autenticación y credenciales
+Abre Docker Desktop
+
+Autentícate con tu cuenta de Docker Hub
+
+Verifica con:
+```bash
+docker system info | grep Username
+```
