@@ -113,3 +113,5 @@ En entornos Linux reales se recomienda acceso vía SSH o TLS usando contextos Do
 docker context create remote-host --docker "host=ssh://usuario@host"
 docker context use remote-host
 docker ps
+
+⚠️ En macOS con Docker Desktop, no se puede usar directamente este enfoque para acceder a la VM de Docker Desktop.
