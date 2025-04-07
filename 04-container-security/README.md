@@ -197,7 +197,6 @@ Sistema de control de acceso obligatorio en Ubuntu y Debian.
 
 Permite definir perfiles que restringen accesos a archivos, red, capacidades, etc.
 
-## Trae AI
 2 context(s) used
 
 Based on the terminal output showing the seccomp profile error, let's update the README with the correct seccomp profile information:
@@ -239,7 +238,6 @@ Delete
 
 Terminal 295 - 296
 
-## Trae AI
 2 context(s) used
 
 README.md 194-194
@@ -265,3 +263,14 @@ docker run --security-opt apparmor=mi-perfil alpine
 - En Docker Desktop para Mac, AppArmor no está disponible directamente
 - Esta funcionalidad solo está disponible en sistemas Linux con AppArmor instalado
 - Para pruebas de AppArmor, se recomienda usar un host Linux nativo
+
+📘 SELinux (Security-Enhanced Linux)
+Similar a AppArmor, más granular.
+
+Muy usado en RedHat/CentOS/Fedora.
+
+Docker puede usarlo con etiquetas:
+
+docker run --security-opt label:type:my_container_t alpine
+
+En sistemas con SELinux activo (getenforce → Enforcing), Docker aplica reglas adicionales.
