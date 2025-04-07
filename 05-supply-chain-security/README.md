@@ -115,4 +115,5 @@ grype	          Escaneo de vulnerabilidades	                  Docker, SBOM
 Opción recomendada: syft (Solo documentados por ahora)
 
 
+Escaneo centralizado de vulnerabilidades
 
