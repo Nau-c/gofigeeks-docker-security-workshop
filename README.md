@@ -115,6 +115,9 @@ chmod 400 taller.pem
 Si estas en windows usando WSL podremos darle permisos con el comando:
 chmod ~/.ssh/taller.pem 400
 
+conectar por ssh:
+ssh -i ~/.ssh/taller.pem ubuntu@IP_PUBLICA_EC2
+
 
 
 
